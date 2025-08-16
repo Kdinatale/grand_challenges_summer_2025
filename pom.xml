@@ -39,24 +39,24 @@
 	        <groupId>com.okta</groupId>
 	        <artifactId>okta-spring-boot-starter</artifactId>
 	        <version>3.0.5</version>
-	    </dependency> -->
+	    </dependency>
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-oauth2-client</artifactId>
-	    </dependency>
+	    </dependency> -->
 	    <dependency>
 	        <groupId>org.springframework.boot</groupId>
 	        <artifactId>spring-boot-starter-thymeleaf</artifactId>
 	    </dependency>
-	    <dependency>
+	<!--    <dependency>
 	        <groupId>org.thymeleaf.extras</groupId>
 	        <artifactId>thymeleaf-extras-springsecurity6</artifactId>
-	    </dependency>
-	    <dependency>
+	    </dependency> 
+ 		<dependency>
 	        <groupId>nz.net.ultraq.thymeleaf</groupId>
 	        <artifactId>thymeleaf-layout-dialect</artifactId>
-	    </dependency>
-		<dependency>
+	    </dependency> -->
+		<dependency> 
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
@@ -71,11 +71,11 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
+	<!--	<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-test</artifactId>
 			<scope>test</scope>
-		</dependency>
+		</dependency> -->
 	</dependencies>
 
 	<build>
