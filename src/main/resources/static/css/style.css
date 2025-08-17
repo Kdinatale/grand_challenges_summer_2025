@@ -1,15 +1,17 @@
 /* Create a grid on the body or container */
 body {
   display: grid;
-  height: 100vh; /* full viewport height */
-  place-items: center; /* centers item both horizontally and vertically */
-  margin: 0;
-  background-color:#EECCEC;
+  height: 100vh;
+  justify-self: center;
+  align-items: center;
+  background-image: url("/images/computer_background.png");
+  background-size: cover;
+  background-position: center;
 }
 
 /* Style the square */
 .browser {
-  width: 90vh;
+  width: 55vw;
   height: 80vh;
   display: flex;
   flex-direction: column;
@@ -21,38 +23,41 @@ body {
 	align-items: flex-end;
 /* 	gap: 5vh;
  */	height: 100%;
+ 	width: 70%;
 
 }
 
-.browser-tab-1 {
-	border-bottom: 5vh solid #F5F5F5;
+  .browser-tab-1 {
+      width: 50%;
+      height: 75%;
+      background-color: #F5F5F5;
+      clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+  }
+/* .browser-tab-1 {
+	border-bottom: 5vw solid #F5F5F5;
 	border-left: 7vh solid transparent;
 	border-right: 7vh solid transparent;
 	height: 0;
-	width: 8vh;
-	grid-row:1;
-	grid-column:1;
-}
-.browser-tab-2 {
-	border-bottom: 5vh solid #EAE1E1;
-	border-left: 7vh solid transparent;
-	border-right: 7vh solid transparent;
-	height: 0;
-	width: 8vh;
-	
-}
-.browser-tab-3 {
- 	border-bottom: 5vh solid #F5F5F5;
-	border-left: 6vh solid transparent;
-	border-right: 6vh solid transparent;
-	height: 0;
-	width: 8vh; 
-}
+	width: 8vw;
+} */
+ .browser-tab-2 {
+      width: 50%;
+      height: 75%;
+      background-color: #F5F5F5;
+      clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+ }
+ .browser-tab-3 {
+     width: 50%;
+     height: 75%;
+     background-color: #F5F5F5;
+     clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+ }
+  
 .upper-browser-container{
 	display: flex;
 	flex-direction:column;
 	width: 100%;
-	height:30%;
+	height:25%;
 	justify-content:flex-end;
 	background-color: #CCC5C5;
 	padding-top: 2%;
@@ -106,6 +111,7 @@ body {
  	grid-column: 2;
 	grid-template-columns: 10% 80%;
 	align-items: center;
+	background-color: #D9D9D9;
 
 }
 .search-container{
@@ -131,7 +137,7 @@ body {
 	width: 30%;
 	height:100%;
 	display:grid;
-	grid-template-columns: repeat(3, 1fr);
+	grid-template-columns: 33% 33% 33%;
 	place-items: center;
 }
 
@@ -143,6 +149,7 @@ body {
 	grid-column: 1;
 	display: grid;
 	place-items: center;
+	font-size: 100%;
 	
 }
 
@@ -166,4 +173,17 @@ body {
 	display: grid;
 	place-items: center;
 	
+	
 }
+
+.fa-minus{
+	font-size: 3em;
+	
+}
+/* 
+.url-text{
+	font-family: "Irish Grover", system-ui;
+	font-weight: 400;
+	font-style: normal;
+	
+} */
