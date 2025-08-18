@@ -2,7 +2,13 @@ import Browser from "./Browser.jsx";
 import closedCloset from "./assets/images/closed_closet.png";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
-function ProfilePage() {
+function ProfilePage({
+  profilePhoto,
+  clothingItemOne,
+  clothingItemTwo,
+  clothingItemThree,
+  clothingItemFour,
+}) {
   return (
     <>
       <Browser>
@@ -15,7 +21,9 @@ function ProfilePage() {
                     <div className="about-me-text-container"></div>
                     <div className="profile-photo-container">
                       <div className="profile-photo-border">
-                        <div className="profile-photo-holder"></div>
+                        <div className="profile-photo-holder">
+                          {profilePhoto}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -23,16 +31,16 @@ function ProfilePage() {
               </div>
               <div className="favorite-clothing-container">
                 <div className="clothing-image-1-container">
-                  <div className="clothing-image-1"></div>
+                  <div className="clothing-image-1">{clothingItemOne}</div>
                 </div>
                 <div className="clothing-image-2-container">
-                  <div className="clothing-image-2"></div>
+                  <div className="clothing-image-2">{clothingItemTwo}</div>
                 </div>
                 <div className="clothing-image-3-container">
-                  <div className="clothing-image-3"></div>
+                  <div className="clothing-image-3">{clothingItemThree}</div>
                 </div>
                 <div className="clothing-image-4-container">
-                  <div className="clothing-image-4"></div>
+                  <div className="clothing-image-4"> {clothingItemFour}</div>
                 </div>
               </div>
             </div>
@@ -56,7 +64,7 @@ function ProfilePage() {
                     </div>
                   </div>
                 </div>
-                <div class="post-it-4-border">
+                <div className="post-it-4-border">
                   <div className="post-it-4">
                     <div className="pin-container-4">
                       <img className="pin-4" src={pinkPin} alt="Pink pin"></img>
