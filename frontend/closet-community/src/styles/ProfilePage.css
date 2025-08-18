@@ -1,0 +1,78 @@
+.profile-closet-container {
+  display: flex;
+  height: 100%;
+  width: 100%;
+}
+.profile-content-container {
+  flex: 2;
+  background-color: green;
+}
+.about-me-container {
+  background-color: orange;
+  height: 75%;
+  width: 75%;
+  display: flex;
+}
+
+.about-me-border {
+  height: 80%;
+  width: 80%;
+  margin: auto;
+  background-color: white;
+  display: flex;
+  background-color: black;
+}
+
+.about-me {
+  height: 92%;
+  width: 92%;
+  margin: auto;
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.profile-photo-template {
+  background-color: aqua;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  flex-direction: column;
+}
+.about-me-text-container {
+  flex: 1.25;
+  background-color: yellow;
+}
+.profile-photo-container {
+  flex: 2.75;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile-photo-border {
+  display: flex;
+  background-color: black;
+  width: 75%;
+  aspect-ratio: 16/16;
+  justify-content: center;
+  align-content: center;
+}
+.profile-photo-holder {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  margin: auto;
+}
+.closed-closet-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.closed-closet {
+  height: 85%;
+  width: 90%;
+}
