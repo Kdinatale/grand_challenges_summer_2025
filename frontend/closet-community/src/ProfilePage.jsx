@@ -1,4 +1,5 @@
 import Browser from "./Browser.jsx";
+import { useState } from "react";
 // import closedCloset from "./assets/images/closed_closet.png";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
@@ -9,6 +10,21 @@ function ProfilePage({
   clothingItemThree,
   clothingItemFour,
 }) {
+  const [isClosetHovered, setIsClosetHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsClosetHovered(true);
+  };
+
+  const handMouseLeave = () => {
+    setIsClosetHovered(false);
+  };
+
+  const handleClick = () => {
+    setIsClicked(!isClicked);
+  };
+
   return (
     <>
       <Browser>
@@ -74,8 +90,43 @@ function ProfilePage({
               </div>
             </div>
           </div>
-          <div className="closed-closet-container">
-            <div className="closed-closet"></div>
+          <div className="closet-section">
+            <div className="enter-closet-prompt-container">
+              <div className="enter-closet-prompt-box">
+                <div className="prompt-box-header"></div>
+                <div className="prompt-box-content">
+                  <div className="prompt-message">
+                    <p className="message-text">check out my closet :)</p>
+                  </div>
+                  <div className="buttons-container">
+                    <div className="ok-button-container">
+                      <p className="ok-text">ok!</p>
+                    </div>
+                    <div className="later-button-container">
+                      <p className="later-text">later!</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {isClosetHovered ? (
+              <div className="open-closet-container">
+                <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handMouseLeave}
+                  className="open-closet"
+                  onClick={handleClick}
+                ></div>
+              </div>
+            ) : (
+              <div className="closed-closet-container">
+                <div
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handMouseLeave}
+                  className="closed-closet"
+                ></div>
+              </div>
+            )}
           </div>
         </div>
       </Browser>

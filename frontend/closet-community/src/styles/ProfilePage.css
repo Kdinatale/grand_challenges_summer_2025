@@ -169,14 +169,20 @@
   width: 100%;
   transform: rotate(-60deg);
 }
-.closed-closet-container {
+
+.closet-section {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.closed-closet-container {
+  flex: 3;
   display: flex;
   justify-content: center;
   align-items: flex-end;
 }
 .closed-closet {
-  height: 85%;
+  height: 100%;
   width: 90%;
   background-image: url("/images/closed_closet.png");
   background-size: 95%;
@@ -184,8 +190,14 @@
   background-repeat: no-repeat;
 }
 
-.closed-closet:hover {
-  height: 85%;
+.open-closet-container {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.open-closet {
+  height: 100%;
   width: 90%;
   background-image: url("/images/open_closet.png");
   background-size: 95%;
@@ -256,4 +268,83 @@
   height: 90%;
   display: flex;
   justify-content: center;
+}
+
+.enter-closet-prompt-container {
+  flex: 1;
+  display: flex;
+  justify-content: end;
+  align-items: end;
+  padding-right: 3%;
+}
+
+.enter-closet-prompt-box {
+  width: 70%;
+  height: 95%;
+  background-color: #d9d9d9;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+
+.prompt-box-header {
+  width: 100%;
+  height: 20%;
+  background-color: #ccc5c5;
+}
+.prompt-box-content {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+.buttons-container {
+  width: 100%;
+  height: 45%;
+  display: flex;
+}
+.ok-button-container {
+  width: 30%;
+  height: 65%;
+  background-color: #ffffff;
+  margin: auto;
+}
+.later-button-container {
+  width: 30%;
+  height: 65%;
+  background-color: #ffffff;
+  margin: auto;
+}
+.later-text {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 2cqw;
+}
+.ok-text {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 2cqw;
+}
+
+.prompt-message {
+  display: flex;
+  height: 55%;
+  width: 100%;
+}
+
+.message-text {
+  font-size: 2.1cqw;
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: bold;
+  margin: auto;
+  text-align: center;
+  line-height: 1.2;
 }
