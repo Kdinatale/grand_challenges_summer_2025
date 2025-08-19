@@ -22,7 +22,9 @@ function ProfilePage({
   };
 
   const handMouseLeave = () => {
-    setIsClosetHovered(false);
+    if (!isClicked) {
+      setIsClosetHovered(false);
+    }
   };
 
   const handleClick = () => {
