@@ -1,4 +1,5 @@
 import Browser from "./Browser.jsx";
+
 import { useState } from "react";
 // import closedCloset from "./assets/images/closed_closet.png";
 import "./styles/ProfilePage.css";
@@ -12,6 +13,7 @@ function ProfilePage({
 }) {
   const [isClosetHovered, setIsClosetHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  // const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setIsClosetHovered(true);
@@ -23,6 +25,14 @@ function ProfilePage({
 
   const handleClick = () => {
     setIsClicked(!isClicked);
+  };
+
+  const handleClickOkayButton = () => {
+    // navigate("/closet");
+  };
+
+  const handleClickLaterButton = () => {
+    setIsClosetHovered(false);
   };
 
   return (
@@ -92,22 +102,30 @@ function ProfilePage({
           </div>
           <div className="closet-section">
             <div className="enter-closet-prompt-container">
-              <div className="enter-closet-prompt-box">
-                <div className="prompt-box-header"></div>
-                <div className="prompt-box-content">
-                  <div className="prompt-message">
-                    <p className="message-text">check out my closet :)</p>
-                  </div>
-                  <div className="buttons-container">
-                    <div className="ok-button-container">
-                      <p className="ok-text">ok!</p>
+              {isClosetHovered && (
+                <div className="enter-closet-prompt-box">
+                  <div className="prompt-box-header"></div>
+                  <div className="prompt-box-content">
+                    <div className="prompt-message">
+                      <p className="message-text">check out my closet :)</p>
                     </div>
-                    <div className="later-button-container">
-                      <p className="later-text">later!</p>
+                    <div className="buttons-container">
+                      <div
+                        onClick={handleClickOkayButton}
+                        className="ok-button-container"
+                      >
+                        <p className="ok-text">ok!</p>
+                      </div>
+                      <div
+                        onClick={handleClickLaterButton}
+                        className="later-button-container"
+                      >
+                        <p className="later-text">later!</p>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
             {isClosetHovered ? (
               <div className="open-closet-container">
@@ -116,7 +134,12 @@ function ProfilePage({
                   onMouseLeave={handMouseLeave}
                   className="open-closet"
                   onClick={handleClick}
-                ></div>
+                >
+                  <img
+                    className="closed-closet-img"
+                    src="/images/open_closet.png"
+                  ></img>
+                </div>
               </div>
             ) : (
               <div className="closed-closet-container">
@@ -124,7 +147,12 @@ function ProfilePage({
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handMouseLeave}
                   className="closed-closet"
-                ></div>
+                >
+                  <img
+                    className="open-closet-img"
+                    src="/images/closed_closet.png"
+                  ></img>
+                </div>
               </div>
             )}
           </div>

@@ -176,7 +176,7 @@
   flex-direction: column;
 }
 .closed-closet-container {
-  flex: 3;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -184,14 +184,20 @@
 .closed-closet {
   height: 100%;
   width: 90%;
-  background-image: url("/images/closed_closet.png");
+  /* background-image: url("/images/closed_closet.png"); */
   background-size: 95%;
   background-position: center;
   background-repeat: no-repeat;
+  display: flex;
+}
+
+.closed-closet-img {
+  height: 100%;
+  width: 100%;
 }
 
 .open-closet-container {
-  flex: 3;
+  height: 80%;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -199,10 +205,15 @@
 .open-closet {
   height: 100%;
   width: 90%;
-  background-image: url("/images/open_closet.png");
+  /* background-image: url("/images/open_closet.png"); */
   background-size: 95%;
   background-position: center;
-  background-repeat: no-repeat;
+  display: flex;
+}
+
+.open-closet-img {
+  height: 100%;
+  width: 100%;
 }
 
 .favorite-clothing-container {
@@ -271,7 +282,7 @@
 }
 
 .enter-closet-prompt-container {
-  flex: 1;
+  height: 20%;
   display: flex;
   justify-content: end;
   align-items: end;
@@ -322,7 +333,7 @@
   font-style: normal;
   margin: auto;
   text-align: center;
-  font-size: 2cqw;
+  font-size: 1.8cqw;
 }
 .ok-text {
   font-family: "Irish Grover", system-ui;
@@ -330,7 +341,7 @@
   font-style: normal;
   margin: auto;
   text-align: center;
-  font-size: 2cqw;
+  font-size: 1.8cqw;
 }
 
 .prompt-message {
@@ -340,7 +351,7 @@
 }
 
 .message-text {
-  font-size: 2.1cqw;
+  font-size: 1.9cqw;
   font-family: "Irish Grover", system-ui;
   font-weight: 400;
   font-style: bold;
