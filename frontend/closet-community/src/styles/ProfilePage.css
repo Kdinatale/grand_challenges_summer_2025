@@ -178,6 +178,19 @@
 .closed-closet {
   height: 85%;
   width: 90%;
+  background-image: url("/images/closed_closet.png");
+  background-size: 95%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.closed-closet:hover {
+  height: 85%;
+  width: 90%;
+  background-image: url("/images/open_closet.png");
+  background-size: 95%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .favorite-clothing-container {

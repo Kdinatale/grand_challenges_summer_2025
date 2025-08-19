@@ -1,5 +1,5 @@
 import Browser from "./Browser.jsx";
-import closedCloset from "./assets/images/closed_closet.png";
+// import closedCloset from "./assets/images/closed_closet.png";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
 function ProfilePage({
@@ -75,11 +75,7 @@ function ProfilePage({
             </div>
           </div>
           <div className="closed-closet-container">
-            <img
-              className="closed-closet"
-              src={closedCloset}
-              alt="Closet with closed door"
-            />
+            <div className="closed-closet"></div>
           </div>
         </div>
       </Browser>
