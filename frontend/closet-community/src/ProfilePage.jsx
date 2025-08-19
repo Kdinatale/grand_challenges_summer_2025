@@ -1,7 +1,9 @@
 import Browser from "./Browser.jsx";
 
 import { useState } from "react";
-// import closedCloset from "./assets/images/closed_closet.png";
+import closedCloset from "./assets/images/closed_closet.png";
+import openCloset from "./assets/images/open_closet.png";
+import { useNavigate } from "react-router-dom";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
 function ProfilePage({
@@ -13,7 +15,7 @@ function ProfilePage({
 }) {
   const [isClosetHovered, setIsClosetHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleMouseEnter = () => {
     setIsClosetHovered(true);
@@ -28,7 +30,7 @@ function ProfilePage({
   };
 
   const handleClickOkayButton = () => {
-    // navigate("/closet");
+    navigate("/closet", { viewTransition: true });
   };
 
   const handleClickLaterButton = () => {
@@ -136,8 +138,9 @@ function ProfilePage({
                   onClick={handleClick}
                 >
                   <img
-                    className="closed-closet-img"
-                    src="/images/open_closet.png"
+                    className="open-closet-img"
+                    src={openCloset}
+                    alt="Image of a double door, green closet with the right door open."
                   ></img>
                 </div>
               </div>
@@ -149,8 +152,9 @@ function ProfilePage({
                   className="closed-closet"
                 >
                   <img
-                    className="open-closet-img"
-                    src="/images/closed_closet.png"
+                    className="closed-closet-img"
+                    src={closedCloset}
+                    alt="Image of a double door, green closet with both doors closed."
                   ></img>
                 </div>
               </div>
