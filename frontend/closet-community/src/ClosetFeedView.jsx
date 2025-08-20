@@ -1,7 +1,18 @@
+import Browser from "./Browser";
+import FeedHeader from "./FeedHeader";
+import profilePhoto from "./assets/images/profile_photo_test.JPEG";
+
 function ClosetFeedView() {
   return (
     <>
-      <h1>TEST</h1>
+      <Browser>
+        <FeedHeader
+          profileImage={
+            <img className="profile-photo-img" src={profilePhoto}></img>
+          }
+          Username={"kwd2002"}
+        />
+      </Browser>
     </>
   );
 }

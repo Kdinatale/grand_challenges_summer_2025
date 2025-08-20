@@ -172,6 +172,7 @@
 
   .browser-content {
     height: 75%;
+    display: flex;
   }
 }
 
@@ -342,6 +343,7 @@
 
   .browser-content {
     height: 75%;
+    display: flex;
   }
 }
 
@@ -515,6 +517,7 @@
 
   .browser-content {
     height: 75%;
+    display: flex;
   }
 }
 
@@ -689,6 +692,7 @@
 
   .browser-content {
     height: 75%;
+    display: flex;
   }
 }
 
@@ -860,6 +864,7 @@
 
   .browser-content {
     height: 80%;
+    display: flex;
   }
 }
 
