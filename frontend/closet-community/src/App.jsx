@@ -1,15 +1,13 @@
 import { Routes, Route } from "react-router-dom";
-import ViewProfilePage from "./ViewProfilePage";
 import ClosetFeedView from "./ClosetFeedView";
-import EditProfilePage from "./EditProfilePage";
+import ProfileViewManager from "./ProfileViewManager";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/profile" element={<ViewProfilePage />}></Route>
         <Route path="/closet" element={<ClosetFeedView />}></Route>
-        <Route path="/editProfile" element={<EditProfilePage />}></Route>
+        <Route path="/profile" element={<ProfileViewManager />}></Route>
       </Routes>
     </>
   );
