@@ -26,7 +26,6 @@ public class ProfileUploadController {
     @PostMapping("/uploadProfilePhoto")
     @ResponseBody
     public String getClothingFeed(@RequestParam("file") MultipartFile file) throws IOException {
-        return "TESTTTTT";
-//                service.uploadImage(file, "test");
+        return service.uploadImage(file, "test");
     }
 }
