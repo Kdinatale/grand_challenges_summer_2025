@@ -6,16 +6,23 @@ import SaveButton from "./assets/images/save_button.png";
 import UploadProfileImage from "./UploadProfileImage";
 import BlankProfileImage from "./assets/images/blank_profile_image.png";
 import { useRef } from "react";
+import UploadFile from "./UploadFile";
 
 function ProfileViewManager() {
   const [isEditMode, setIsEditMode] = useState(false);
 
   const profileImageRef = useRef(null);
 
-  const handleEditClick = () => {
+  const handleEditClick = async () => {
     if (profileImageRef.current && profileImageRef.current.files.length > 0) {
       const profileImageFile = profileImageRef.current.files[0];
       console.log(profileImageFile);
+      try {
+        const response = await UploadFile(profileImageFile);
+        console.log("RESPONSE: " + response);
+      } catch (e) {
+        console.log(e);
+      }
     }
 
     setIsEditMode(!isEditMode);
