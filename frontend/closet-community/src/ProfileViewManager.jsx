@@ -8,7 +8,7 @@ import { useRef } from "react";
 import UploadFile from "./UploadFile";
 import GetFile from "./GetFile";
 
-function ProfileViewManager() {
+function ProfileViewManager({ userId }) {
   const [isEditMode, setIsEditMode] = useState(false);
   const [isImageUrl, setIsImageUrl] = useState("");
 
@@ -35,7 +35,9 @@ function ProfileViewManager() {
 
   useEffect(() => {
     async function getProfilePhoto() {
-      const response = await GetFile();
+      const response = await GetFile(
+        `http://localhost:8080/getProfilePhoto/${userId}`
+      );
       setIsImageUrl(response.data);
     }
     getProfilePhoto();
@@ -45,6 +47,7 @@ function ProfileViewManager() {
     <>
       {isEditMode ? (
         <ProfilePage
+          userId={userId}
           profilePhoto={
             <UploadProfileImage
               ref={profileImageRef}
@@ -62,6 +65,7 @@ function ProfileViewManager() {
         />
       ) : (
         <ProfilePage
+          userId={userId}
           profilePhoto={<img src={isImageUrl} />}
           clothingItemOne={<></>}
           iconImage={
