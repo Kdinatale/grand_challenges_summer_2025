@@ -12,6 +12,7 @@ function ProfilePage({
   clothingItemTwo,
   clothingItemThree,
   clothingItemFour,
+  iconImage,
 }) {
   const [isClosetHovered, setIsClosetHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -47,15 +48,20 @@ function ProfilePage({
             <div className="about-me-container">
               <div className="about-me-border">
                 <div className="about-me">
-                  <div className="profile-photo-template">
-                    <div className="about-me-text-container"></div>
-                    <div className="profile-photo-container">
-                      <div className="profile-photo-border">
-                        <div className="profile-photo-holder">
-                          {profilePhoto}
+                  <div className="about-me-first-half">
+                    <div className="profile-photo-template">
+                      <div className="about-me-text-container"></div>
+                      <div className="profile-photo-container">
+                        <div className="profile-photo-border">
+                          <div className="profile-photo-holder">
+                            {profilePhoto}
+                          </div>
                         </div>
                       </div>
                     </div>
+                  </div>
+                  <div className="about-me-second-half">
+                    <div className="icon-container">{iconImage}</div>
                   </div>
                 </div>
               </div>
