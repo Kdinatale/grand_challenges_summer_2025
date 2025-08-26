@@ -25,8 +25,8 @@ public class UploadService {
     String bucketName;
   
 
-  public String uploadImage(MultipartFile file, String objectName) throws IOException {
-      ServiceAccountCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/resources/closet-community-469622-0542c020c3c5.json"));
+  public void uploadImage(MultipartFile file, String objectName) throws IOException {
+      ServiceAccountCredentials credentials = ServiceAccountCredentials.fromStream(new FileInputStream("src/main/resources/closet-community-key.json"));
 
 
       Storage storage = StorageOptions.newBuilder().setProjectId(this.projectId).setCredentials(credentials).build().getService();
@@ -51,8 +51,8 @@ public class UploadService {
     
       Files.delete(tempFile);
 
-    return "https://console.cloud.google.com/storage/browser/" + "/" + bucketName + "/" + objectName + "/";
   }
+  
 
 
 }
