@@ -48,22 +48,17 @@ public class ProfileController {
                 fileExtension = "";
         }
         
-        System.out.println("------START OF PROFILE PHOTO UPLOAD------");
         Optional<Profile> profile = profileService.getProfileByUserId(userId);
-        System.out.println("PROFILE OPTIONAL OBJECT: " + profile);
         if(profile.isPresent()) {
-            System.out.println("------User Profile Exists------");
             String objectName = profileFolderName + "/" + profile.get().getUserId() + "profile_photo" + fileExtension;
 
             uploadService.uploadImage(file, objectName);
     
             Photo newPhoto = new Photo("closet-community-bucket", objectName);
             profile.get().setProfilePhoto(newPhoto);
-//            photoService.savePhoto(newPhoto);
             profileService.saveProfile(profile.get());
         }
         else {
-            System.out.println("------User Profile Does Not Exist------");
             Optional<User> user = userService.getUserByUserId(userId);
             System.out.println("OPTIONAL USER OBJECT: " + user);
             if(user.isEmpty()) {
@@ -81,7 +76,6 @@ public class ProfileController {
         
                 Photo newPhoto = new Photo("closet-community-bucket", objectName);
                 newProfile.setProfilePhoto(newPhoto);
-//                photoService.savePhoto(newPhoto);
                 profileService.saveProfile(newProfile);
                 
             }
