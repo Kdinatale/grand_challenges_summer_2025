@@ -4,7 +4,6 @@ import ProfilePage from "./ProfilePage";
 import "./styles/ProfileViewManager.css";
 import SaveButton from "./assets/images/save_button.png";
 import UploadProfileImage from "./UploadProfileImage";
-import BlankProfileImage from "./assets/images/blank_profile_image.png";
 import { useRef } from "react";
 import UploadFile from "./UploadFile";
 import GetFile from "./GetFile";
@@ -49,7 +48,7 @@ function ProfileViewManager() {
           profilePhoto={
             <UploadProfileImage
               ref={profileImageRef}
-              imagePlaceHolder={BlankProfileImage}
+              profileImage={isImageUrl}
             />
           }
           profileImageRef={profileImageRef}

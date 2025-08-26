@@ -1,11 +1,11 @@
 import React, { forwardRef } from "react";
 
-const UploadProfileImage = forwardRef(({ imagePlaceHolder }, ref) => {
+const UploadProfileImage = forwardRef(({ profileImage }, ref) => {
   return (
     <>
       <form>
         <label htmlFor="profile-image-input">
-          <img className="profile-photo-img" src={imagePlaceHolder}></img>
+          <img className="profile-photo-img" src={profileImage}></img>
         </label>
         <input
           ref={ref}
