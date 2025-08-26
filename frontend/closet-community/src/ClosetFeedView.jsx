@@ -1,18 +1,45 @@
 import Browser from "./Browser";
 import FeedHeader from "./FeedHeader";
-import profilePhoto from "./assets/images/profile_photo_test.JPEG";
+import GetFile from "./GetFile";
+import { useEffect } from "react";
+import { useState } from "react";
 
-function ClosetFeedView() {
+function ClosetFeedView({ userId }) {
+  const [isProfileImageUrl, setIsProfileImageUrl] = useState("");
+
+  useEffect(() => {
+    // async function getClothingItems() {
+    //   const response = await GetFile(
+    //     `http://localhost:8080/getClothingItemsOrderedByTime/${userId}`
+    //   );
+    //   console.log(response.data);
+    // }
+    // getClothingItems();
+    async function getProfilePhoto() {
+      const response = await GetFile(
+        `http://localhost:8080/getProfilePhoto/${userId}`
+      );
+      setIsProfileImageUrl(response.data);
+      console.log(response.data);
+    }
+    getProfilePhoto();
+  }, []);
+
   return (
     <>
-      <Browser>
-        <FeedHeader
-          profileImage={
-            <img className="profile-photo-img" src={profilePhoto}></img>
-          }
-          Username={"kwd2002"}
-        />
-      </Browser>
+      <div className="closet-feed-view-container">
+        <Browser>
+          <FeedHeader
+            profileImage={
+              <img className="profile-photo-img" src={isProfileImageUrl}></img>
+            }
+            Username={"kwd2002"}
+          />
+          <div className="closet-feed-container">
+            <div className="clothing-item-container"></div>
+          </div>
+        </Browser>
+      </div>
     </>
   );
 }
