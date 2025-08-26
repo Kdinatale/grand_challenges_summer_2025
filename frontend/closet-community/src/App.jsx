@@ -7,7 +7,10 @@ function App() {
     <>
       <Routes>
         <Route path="/closet" element={<ClosetFeedView />}></Route>
-        <Route path="/profile" element={<ProfileViewManager />}></Route>
+        <Route
+          path="/profile"
+          element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}
+        ></Route>
       </Routes>
     </>
   );
