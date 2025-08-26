@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditIcon from "./assets/images/edit_icon.png";
 import ProfilePage from "./ProfilePage";
 import "./styles/ProfileViewManager.css";
@@ -7,9 +7,11 @@ import UploadProfileImage from "./UploadProfileImage";
 import BlankProfileImage from "./assets/images/blank_profile_image.png";
 import { useRef } from "react";
 import UploadFile from "./UploadFile";
+import GetFile from "./GetFile";
 
 function ProfileViewManager() {
   const [isEditMode, setIsEditMode] = useState(false);
+  const [isImageUrl, setIsImageUrl] = useState("");
 
   const profileImageRef = useRef(null);
 
@@ -27,6 +29,18 @@ function ProfileViewManager() {
 
     setIsEditMode(!isEditMode);
   };
+
+  useEffect(() => {
+    console.log(isImageUrl);
+  }, [isImageUrl]);
+
+  useEffect(() => {
+    async function getProfilePhoto() {
+      const response = await GetFile();
+      setIsImageUrl(response.data);
+    }
+    getProfilePhoto();
+  }, []);
 
   return (
     <>
@@ -49,7 +63,7 @@ function ProfileViewManager() {
         />
       ) : (
         <ProfilePage
-          profilePhoto={<></>}
+          profilePhoto={<img src={isImageUrl} />}
           clothingItemOne={<></>}
           iconImage={
             <img
