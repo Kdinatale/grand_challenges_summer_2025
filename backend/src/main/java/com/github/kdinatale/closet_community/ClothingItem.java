@@ -14,13 +14,15 @@ class ClothingItem{
    private Size size;
    private LocalDateTime createdAt;
    private String userId;
+   private Photo clothingItemPhoto;
 
-   public ClothingItem(ClothingType type, String color, Size size, LocalDateTime createdAt, String userId) {
+   public ClothingItem(ClothingType type, String color, Size size, LocalDateTime createdAt, String userId, Photo clothingItemPhoto) {
        this.type = type;
        this.color = color;
        this.size = size;
        this.createdAt = createdAt;
        this.userId = userId;
+       this.clothingItemPhoto = clothingItemPhoto;
    }
    public ClothingType getType() {
        return this.type;
@@ -54,6 +56,14 @@ class ClothingItem{
    }
    public void setUserId(String userId) {
        this.userId = userId;
+   }
+   
+   public void setClothingItemPhoto(Photo clothingItemPhoto) {
+       this.clothingItemPhoto = clothingItemPhoto;
+   }
+   
+   public Photo getClothingItemPhoto() {
+       return this.clothingItemPhoto;
    }
    
 }
