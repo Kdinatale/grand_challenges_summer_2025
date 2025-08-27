@@ -10,6 +10,6 @@ public interface ClothingItemRepository extends MongoRepository<ClothingItem, St
     List<ClothingItem> findByColor(String color);
     List<ClothingItem> findBySize(Size size);
     List<ClothingItem> findByType(ClothingType type);
-    List<ClothingItem> findAllByOrderByCreatedAtAsc();
+    List<ClothingItem> findByUserIdOrderByCreatedAtAsc(String userId);
 
 }

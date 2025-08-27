@@ -25,8 +25,8 @@ public class ClothingItemService{
         return repository.findByType(type);
     }
     
-    public List<ClothingItem> getItemsByTimeCreated(){
-        return repository.findAllByOrderByCreatedAtAsc();
+    public List<ClothingItem> getItemsByTimeCreated(String userId){
+        return repository.findByUserIdOrderByCreatedAtAsc(userId);
     }
     
     public void addClothingItem(ClothingItem item) {
