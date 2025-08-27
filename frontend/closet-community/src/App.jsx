@@ -8,15 +8,15 @@ function App() {
     <>
       <Routes>
         <Route
-          path="/closet"
+          path="/closet/:userId"
           element={<ClosetFeedView userId="689151d2f2aaa40b4e1b2b2e" />}
         ></Route>
         <Route
-          path="/profile"
+          path="/profile/"
           element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}
         ></Route>
         <Route
-          path="/addClothingItem"
+          path="/addClothingItem/:userId"
           element={<CreatePost userId="689151d2f2aaa40b4e1b2b2e" />}
         ></Route>
       </Routes>

@@ -14,7 +14,7 @@ function ClosetFeedView({ userId }) {
 
   const handleClickAddClothingItem = () => {
     console.log("CLICK");
-    navigate("/addClothingItem", { viewTransition: true });
+    navigate(`/addClothingItem/${userId}`, { viewTransition: true });
   };
 
   useEffect(() => {
