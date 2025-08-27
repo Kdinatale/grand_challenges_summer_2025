@@ -4,26 +4,42 @@ import photoIcon from "./assets/images/missing_photo_icon.png";
 // import postButton from "./assets/images/post_button.png";
 import selectPhoto from "./assets/images/select_photo.png";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { useRef } from "react";
 
 function PostModal({ userId }) {
+  const [postCaption, setPostCaption] = useState("");
+  const [postImageURL, setPostImageURL] = useState(photoIcon);
+  const fileInputRef = useRef();
+
   const navigate = useNavigate();
 
   const handleCancelClick = () => {
     navigate(`/closet/${userId}`);
   };
-  const postClothingItem = () => {};
+  function postClothingItem(e) {
+    e.preventDefault();
+    console.log("test");
+  }
+
+  function storePostImage() {
+    const file = fileInputRef.current.files[0];
+    const image_url = URL.createObjectURL(file);
+    setPostImageURL(image_url);
+  }
+
   return (
     <>
       <div className="post-container">
         <div className="modal-container-border">
           <div className="modal-container">
-            <form className="modal-container-form" action={postClothingItem}>
+            <form className="modal-container-form" onSubmit={postClothingItem}>
               <div className="upper-modal-container">
                 <div className="image-button-container">
                   <div className="image-section">
                     <div className="image-container-border">
                       <div className="image-container">
-                        <img className="photo-icon" src={photoIcon}></img>
+                        <img className="photo-icon" src={postImageURL}></img>
                       </div>
                     </div>
                   </div>
@@ -44,10 +60,22 @@ function PostModal({ userId }) {
                       Caption:
                     </label>
                   </div>
+                  <input
+                    type="file"
+                    id="img-upload"
+                    className="img-upload"
+                    name="post-img"
+                    ref={fileInputRef}
+                    onChange={storePostImage}
+                  ></input>
+
                   <textarea
+                    name="caption-text-box"
                     id="caption-box"
                     placeholder="Share a message with friends ..."
                     className="caption-text-box"
+                    value={postCaption}
+                    onChange={(e) => setPostCaption(e.target.value)}
                   ></textarea>
                 </div>
                 <div className="button-section-container">
@@ -55,7 +83,6 @@ function PostModal({ userId }) {
                     <button
                       onClick={handleCancelClick}
                       className="cancel-button"
-                      type="submit"
                     >
                       <p>Cancel</p>
                     </button>
@@ -65,7 +92,6 @@ function PostModal({ userId }) {
                   </div>
                 </div>
               </div>
-              <input type="file" id="img-upload" className="img-upload"></input>
             </form>
           </div>
         </div>
