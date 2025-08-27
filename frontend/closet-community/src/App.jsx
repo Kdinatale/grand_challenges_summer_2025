@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import ClosetFeedView from "./ClosetFeedView";
 import ProfileViewManager from "./ProfileViewManager";
+import CreatePost from "./CreatePost";
 
 function App() {
   return (
@@ -13,6 +14,10 @@ function App() {
         <Route
           path="/profile"
           element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}
+        ></Route>
+        <Route
+          path="/addClothingItem"
+          element={<CreatePost userId="689151d2f2aaa40b4e1b2b2e" />}
         ></Route>
       </Routes>
     </>
