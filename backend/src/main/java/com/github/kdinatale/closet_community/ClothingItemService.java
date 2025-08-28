@@ -35,4 +35,8 @@ public class ClothingItemService{
     public void deleteClothingItem(ClothingItem item) {
         repository.delete(item);
     }
+    
+    public void saveClothingItem(ClothingItem item) {
+        repository.save(item);
+    }
 }
