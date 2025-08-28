@@ -4,7 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -30,14 +32,24 @@ public class ClothingController {
     @CrossOrigin(origins = "http://localhost:5173")
     @GetMapping("/getClothingItemsOrderedByTime/{userId}")
     @ResponseBody
-    public List<String> getClothingItemsOrderedByTime(@PathVariable String userId) throws FileNotFoundException, IOException {
+    public List<Map<String, Object>> getClothingItemsOrderedByTime(@PathVariable String userId) throws FileNotFoundException, IOException {
         List<ClothingItem> clothingItems = clothingItemService.getItemsByTimeCreated(userId);
-        List<String> itemUrls = new ArrayList<>();
+        List<Map<String, Object>> itemUrls = new ArrayList<>();
         for(int i = 0; i < clothingItems.size(); i++) {
-            
-            itemUrls.add(clothingItems.get(i).getClothingItemPhoto().getSignedUrl().toString());
+            ClothingItem item = clothingItems.get(i);
+            Map<String, Object> itemMap = new HashMap<>();
+            itemMap.put("id", item.getId());
+            itemMap.put("itemUrl", item.getClothingItemPhoto().getSignedUrl().toString());
+            itemUrls.add(itemMap);
         }
         return itemUrls;
+    }
+    
+    @CrossOrigin(origins = "http://localhost:5173")
+    @GetMapping("/getClothingItem/{clothingItemId}")
+    @ResponseBody
+    public ClothingItem getClothingItemMetaData(@PathVariable String clothingItemId) {
+        return clothingItemService.getItemById(clothingItemId).get();
     }
     
     @CrossOrigin(origins = "http://localhost:5173")
