@@ -44,14 +44,17 @@
   height: 100%;
   width: 100%;
   display: flex;
+  justify-content: start;
 }
 
 .post-header-container .username-text {
   font-family: "Irish Grover", system-ui;
   font-weight: 400;
   font-style: normal;
-  margin: auto;
+  margin-left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
   text-align: left;
-  font-size: 3cqw;
+  font-size: 2cqw;
   color: black;
 }

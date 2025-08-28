@@ -12,6 +12,7 @@ import HeartIcon from "./assets/images/heart_icon.png";
 function ViewPost() {
   const [postCreatedAt, setPostCreatedAt] = useState(null);
   const [postCaption, setPostCaption] = useState("");
+  const [userName, setUserName] = useState("");
   const location = useLocation();
   const { userId, itemUrl, clothingItemId, profileImageUrl } = location.state;
   console.log(itemUrl);
@@ -19,14 +20,20 @@ function ViewPost() {
 
   useEffect(() => {
     async function getClothingInfo() {
-      const url = `http://localhost:8080/getClothingItem/${clothingItemId}`;
-      const response = await GetFile(url);
-      console.log("RESPONSE: ", response.data);
-      const formattedDate = formatPostTime(response.data.time);
+      const getClothingInfoUrl = `http://localhost:8080/getClothingItem/${clothingItemId}`;
+      const clothingResponse = await GetFile(getClothingInfoUrl);
+      console.log("RESPONSE: ", clothingResponse.data);
+      const formattedDate = formatPostTime(clothingResponse.data.time);
       setPostCreatedAt(formattedDate);
 
-      console.log(response.data.caption);
-      setPostCaption(response.data.caption);
+      console.log(clothingResponse.data.caption);
+      setPostCaption(clothingResponse.data.caption);
+
+      const getUserInfoUrl = `http://localhost:8080/getUserName/${userId}`;
+
+      const userNameResponse = await GetFile(getUserInfoUrl);
+      console.log(userNameResponse.data);
+      setUserName(userNameResponse.data);
     }
     getClothingInfo();
   }, []);
@@ -37,7 +44,10 @@ function ViewPost() {
           <>
             <div className="individual-post-page-container">
               <div className="post-border">
-                <PostHeader profileImageUrl={profileImageUrl} username={""} />
+                <PostHeader
+                  profileImageUrl={profileImageUrl}
+                  username={userName}
+                />
                 <div className="clothing-image-container">
                   <div className="post-box">
                     <img className="clothingItemImage" src={itemUrl}></img>
@@ -51,7 +61,14 @@ function ViewPost() {
                     <p>posted {postCreatedAt}</p>
                   </div>
                   <div className="comment-container">
-                    <p className="caption">{postCaption}</p>
+                    <div className="caption-username-container">
+                      <div className="username-container">
+                        <p className="username">{userName}</p>
+                      </div>
+                      <div className="caption-container">
+                        <p className="caption">{postCaption}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

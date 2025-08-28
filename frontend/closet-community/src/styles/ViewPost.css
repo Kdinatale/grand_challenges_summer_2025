@@ -63,6 +63,10 @@ p {
   color: black;
 }
 
+.username {
+  font-weight: 900 !important;
+}
+
 .like-icon-container {
   display: flex;
   width: 15%;
@@ -74,4 +78,21 @@ p {
 .heart-icon {
   height: 70%;
   aspect-ratio: 16/13;
+}
+
+.caption-username-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.caption-container {
+  display: flex;
+  width: 70%;
+}
+.caption-username-container .username-container {
+  display: flex;
+  width: 20%;
+  align-items: center;
+  justify-content: center;
 }
