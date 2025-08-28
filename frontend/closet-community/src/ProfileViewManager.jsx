@@ -19,7 +19,12 @@ function ProfileViewManager({ userId }) {
       const profileImageFile = profileImageRef.current.files[0];
       console.log(profileImageFile);
       try {
-        const response = await UploadFile(profileImageFile);
+        const formData = new FormData();
+        formData.append("file", profileImageFile);
+        const response = await UploadFile(
+          formData,
+          `http://localhost:8080/uploadProfilePhoto/${userId}`
+        );
         console.log("RESPONSE: " + response);
       } catch (e) {
         console.log(e);
