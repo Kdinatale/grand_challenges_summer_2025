@@ -18,6 +18,17 @@ function ClosetFeedView() {
     navigate(`/addClothingItem/${userId}`, { viewTransition: true });
   };
 
+  const handleIndividualClothingView = (clothingItem) => {
+    navigate(`/viewClothingItem/`, {
+      state: {
+        userId: userId,
+        itemUrl: clothingItem.itemUrl,
+        clothingItemId: clothingItem.id,
+        profileImageUrl: isProfileImageUrl,
+      },
+    });
+  };
+
   useEffect(() => {
     async function getClothingItems() {
       const response = await GetFile(
@@ -68,8 +79,16 @@ function ClosetFeedView() {
                     <img src={clothingItem} alt={`Item ${index}`} />
                   </div>
                 ) : (
-                  <div key={index} id={className} className={className}>
-                    <img src={clothingItem} alt={`Item ${index}`} />
+                  <div
+                    key={index}
+                    id={className}
+                    className={className}
+                    onClick={() => handleIndividualClothingView(clothingItem)}
+                  >
+                    <img src={clothingItem.itemUrl} alt={`Item ${index}`} />
+                    <div className="view-box">
+                      <p className="view-text">View</p>
+                    </div>
                   </div>
                 );
               })}

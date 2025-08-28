@@ -22,7 +22,17 @@
   justify-content: center;
   align-items: center;
   background-color: white;
+  position: relative;
 }
+
+.closet-feed-item:hover {
+  background-color: #e3d8d8;
+}
+
+.closet-feed-item:hover .view-box {
+  display: block;
+}
+
 .closet-feed-item img {
   width: 80%;
   aspect-ratio: 1;
@@ -31,4 +41,23 @@
 
 .closet-feed-item-add-icon img {
   width: 50%;
+}
+
+.view-box {
+  width: 60%;
+  height: 25%;
+  background-color: #d14ebe;
+  position: absolute;
+  opacity: 60%;
+  display: none;
+}
+
+.view-text {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 2cqw;
+  color: black;
 }
