@@ -6,6 +6,8 @@ import { useEffect } from "react";
 import GetFile from "./GetFile";
 import { useState } from "react";
 import formatPostTime from "./TimeFormat";
+import "nes.css/css/nes.min.css";
+import HeartIcon from "./assets/images/heart_icon.png";
 
 function ViewPost() {
   const [postCreatedAt, setPostCreatedAt] = useState(null);
@@ -43,6 +45,9 @@ function ViewPost() {
                 </div>
                 <div className="message-container">
                   <div className="post-meta-data-container">
+                    <div className="like-icon-container">
+                      <img src={HeartIcon} className="heart-icon"></img>
+                    </div>
                     <p>posted {postCreatedAt}</p>
                   </div>
                   <div className="comment-container">
