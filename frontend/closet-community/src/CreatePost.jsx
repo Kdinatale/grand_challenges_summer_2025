@@ -4,11 +4,13 @@ import Browser from "./Browser";
 import PostModal from "./PostModal";
 
 function CreatePost({ userId }) {
+  const customUrl = `http://localhost:8080/postClothingItem/${userId}`;
   return (
     <>
-      <Browser>
-        <PostModal>userId = {userId}</PostModal>
-      </Browser>
+      <Browser
+        children={<PostModal url={customUrl} />}
+        rightUrl={`/closet/${userId}`}
+      />
     </>
   );
 }

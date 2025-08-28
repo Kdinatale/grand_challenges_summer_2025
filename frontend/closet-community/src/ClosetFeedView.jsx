@@ -3,14 +3,15 @@ import FeedHeader from "./FeedHeader";
 import GetFile from "./GetFile";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./styles/ClosetFeed.css";
 import SaveIcon from "./assets/images/add_clothing_icon.png";
 
-function ClosetFeedView({ userId }) {
+function ClosetFeedView() {
   const [isProfileImageUrl, setIsProfileImageUrl] = useState("");
   const [isClothingItems, setIsClothingItems] = useState([]);
   const navigate = useNavigate();
+  const { userId } = useParams();
 
   const handleClickAddClothingItem = () => {
     console.log("CLICK");
@@ -39,38 +40,44 @@ function ClosetFeedView({ userId }) {
 
   return (
     <>
-      <Browser>
-        <div className="closet-feed-container">
-          <FeedHeader
-            profileImage={
-              <img className="profile-photo-img" src={isProfileImageUrl}></img>
-            }
-            Username={"kwd2002"}
-          />
-          <div className="clothing-item-container">
-            {isClothingItems.map((clothingItem, index) => {
-              const isAddIcon = index === 0;
-              const className = isAddIcon
-                ? "closet-feed-item closet-feed-item-add-icon"
-                : "closet-feed-item";
-              return isAddIcon ? (
-                <div
-                  key={index}
-                  id={className}
-                  className={className}
-                  onClick={handleClickAddClothingItem}
-                >
-                  <img src={clothingItem} alt={`Item ${index}`} />
-                </div>
-              ) : (
-                <div key={index} id={className} className={className}>
-                  <img src={clothingItem} alt={`Item ${index}`} />
-                </div>
-              );
-            })}
+      <Browser
+        children={
+          <div className="closet-feed-container">
+            <FeedHeader
+              profileImage={
+                <img
+                  className="profile-photo-img"
+                  src={isProfileImageUrl}
+                ></img>
+              }
+              Username={"kwd2002"}
+            />
+            <div className="clothing-item-container">
+              {isClothingItems.map((clothingItem, index) => {
+                const isAddIcon = index === 0;
+                const className = isAddIcon
+                  ? "closet-feed-item closet-feed-item-add-icon"
+                  : "closet-feed-item";
+                return isAddIcon ? (
+                  <div
+                    key={index}
+                    id={className}
+                    className={className}
+                    onClick={handleClickAddClothingItem}
+                  >
+                    <img src={clothingItem} alt={`Item ${index}`} />
+                  </div>
+                ) : (
+                  <div key={index} id={className} className={className}>
+                    <img src={clothingItem} alt={`Item ${index}`} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </Browser>
+        }
+        rightUrl={"/profile/"}
+      />
     </>
   );
 }
