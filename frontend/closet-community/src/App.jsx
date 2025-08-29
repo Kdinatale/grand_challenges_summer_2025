@@ -1,7 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import ClosetFeedView from "./ClosetFeedView";
 import ProfileViewManager from "./ProfileViewManager";
-
+import Home from "./Home";
+import Test from "./Test";
 function App() {
   return (
     <>
@@ -11,6 +12,8 @@ function App() {
           path="/profile"
           element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}
         ></Route>
+        <Route path="/" element={<Home></Home>}></Route>
+        <Route path="/test" element={<Test></Test>}></Route>
       </Routes>
     </>
   );
