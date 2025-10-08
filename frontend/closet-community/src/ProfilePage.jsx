@@ -6,6 +6,7 @@ import openCloset from "./assets/images/open_closet.png";
 import { useNavigate } from "react-router-dom";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
+import Test from "./Test";
 function ProfilePage({
   profilePhoto,
   clothingItemOne,
@@ -44,6 +45,7 @@ function ProfilePage({
     <>
       <Browser>
         <div className="profile-closet-container">
+          {/* <Test></Test> */}
           <div className="profile-content-container">
             <div className="about-me-container">
               <div className="about-me-border">

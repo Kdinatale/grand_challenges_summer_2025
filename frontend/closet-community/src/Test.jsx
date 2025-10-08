@@ -16,7 +16,6 @@ function Test() {
             <p>{user.sub}</p>
           </div>
         )}
-        ;
       </div>
     </>
   );

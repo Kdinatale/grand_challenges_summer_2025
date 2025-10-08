@@ -8,12 +8,13 @@ function App() {
     <>
       <Routes>
         <Route path="/closet" element={<ClosetFeedView />}></Route>
-        <Route
+        {/* <Route
           path="/profile"
           element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}
-        ></Route>
+        ></Route> */}
+        <Route path="/test" element={<ProfileViewManager />}></Route>
         <Route path="/" element={<Home></Home>}></Route>
-        <Route path="/test" element={<Test></Test>}></Route>
+        {/* <Route path="/test" element={<Test></Test>}></Route> */}
       </Routes>
     </>
   );

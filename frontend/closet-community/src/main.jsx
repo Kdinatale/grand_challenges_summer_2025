@@ -11,6 +11,8 @@ createRoot(document.getElementById("root")).render(
     clientId="QH9lvUPJoEtD2xbvi9qewJfgzYjU8dmr"
     authorizationParams={{
       redirect_uri: window.location.origin,
+      audience: "https://api.closetcommunity.com",
+      scope: "open profile email",
     }}
   >
     <StrictMode>
