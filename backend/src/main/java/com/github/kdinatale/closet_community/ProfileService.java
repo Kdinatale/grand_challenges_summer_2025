@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,13 +21,25 @@ class ProfileService{
         repository.save(profile);
     }
     
-    public Profile getProfileByUserName(String userName) {
-        Optional<User> user = service.getUserByUserName(userName);
-        if(user.isEmpty()) {
+    public Profile getProfileByToken(Jwt jwt) {
+        System.out.println("GET PROFILE TOKEN");
+        System.out.println("JWT " + jwt);
+//        
+//        System.out.println("JWT Claims:");
+//        jwt.getClaims().forEach((key, value) -> System.out.println(key + " : " + value));
+        
+        String authId = jwt.getClaimAsString("sub");
+        
+        System.out.println("User Auth Id" + authId);
+        
+        User user = service.getUserByAuthId(authId);
+        
+        System.out.println("USER: " + user);
+        if(user == null) {
             return null;
         }
         else {
-            String userId = user.get().getId();
+            String userId = user.getId();
             Optional<Profile> profile = repository.findByUserId(userId);
             if(profile.isPresent()) {
                 return profile.get();
@@ -48,13 +61,17 @@ class ProfileService{
     }
     
     public Profile createProfile(String firstName, String lastName, String userId) {
-        Profile profile = new Profile(null, firstName, lastName);
+        Profile profile = new Profile(null);
         repository.save(profile);
         return profile;
     }
-    public URL getProfilePhotoUrl(String userId) throws FileNotFoundException, IOException {
-        User user = service.getOrCreateUser(userId);
-        Optional<Profile> profile = repository.findByUserId(userId);
+    public URL getProfilePhotoUrl(String authId) throws FileNotFoundException, IOException {
+        User user = service.getUserByAuthId(authId);
+        if(user == null){
+            user = service.createUser(authId);
+            
+        }
+        Optional<Profile> profile = repository.findByUserId(user.getId());
         Profile userProfile;
         if(profile.isEmpty()) {
             userProfile = createProfile("", "", user.getId());
