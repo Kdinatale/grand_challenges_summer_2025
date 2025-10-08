@@ -13,10 +13,8 @@ class Profile{
    private String userId;
 
 
-   public Profile(String firstName, String lastName, String userId) {
+   public Profile(String userId) {
        this.profilePhoto = new Photo("closet-community-bucket", "profile-photos/default-photo.png");
-       this.firstName = firstName;
-       this.lastName = lastName;
        this.userId = userId;
    }
    

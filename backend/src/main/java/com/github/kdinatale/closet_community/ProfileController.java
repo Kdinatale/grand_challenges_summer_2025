@@ -3,13 +3,12 @@ package com.github.kdinatale.closet_community;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
-import java.util.Optional;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,9 +29,9 @@ public class ProfileController {
         this.photoService = photoService;
     }
     @CrossOrigin(origins = "http://localhost:5173")
-    @PostMapping("/uploadProfilePhoto/{userId}")
+    @PostMapping("/uploadProfilePhoto/")
     @ResponseBody
-    public void uploadProfilePhoto(@PathVariable String userId,
+    public void uploadProfilePhoto(@AuthenticationPrincipal Jwt jwt,
 @RequestParam("file") MultipartFile file) throws IOException {
         String profileFolderName = "profile-photos";
         
@@ -47,28 +46,29 @@ public class ProfileController {
             default:
                 fileExtension = "";
         }
-        
-        Optional<Profile> profile = profileService.getProfileByUserId(userId);
-        if(profile.isPresent()) {
-            String objectName = profileFolderName + "/" + profile.get().getUserId() + "profile_photo" + fileExtension;
+        Profile profile = profileService.getProfileByToken(jwt);
+        String authId = jwt.getClaimAsString("sub");
+
+        if(profile != null) {
+            String objectName = profileFolderName + "/" + profile.getUserId() + "profile_photo" + fileExtension;
 
             uploadService.uploadImage(file, objectName);
     
             Photo newPhoto = new Photo("closet-community-bucket", objectName);
-            profile.get().setProfilePhoto(newPhoto);
-            profileService.saveProfile(profile.get());
+            profile.setProfilePhoto(newPhoto);
+            profileService.saveProfile(profile);
         }
         else {
-            Optional<User> user = userService.getUserByUserId(userId);
+            User user = userService.getUserByAuthId(authId);
             System.out.println("OPTIONAL USER OBJECT: " + user);
-            if(user.isEmpty()) {
+            if(user == null) {
                 System.out.println("User does not exist");
                 //ERROR
             }
             else {
                 System.out.println("User does exist"); 
                 
-                Profile newProfile = profileService.createProfile(user.get().getFirstName(), user.get().getLastName(), userId);
+                Profile newProfile = profileService.createProfile("", "", user.getId());
                 
                 String objectName = profileFolderName + "/" + newProfile.getUserId()+ "profile_photo" + fileExtension;
                 
@@ -82,17 +82,19 @@ public class ProfileController {
         }
     }
     @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/getProfilePhoto/{userId}")
+    @GetMapping("/getProfilePhoto/")
     @ResponseBody
-    public String getPhoto(@PathVariable String userId) throws FileNotFoundException, IOException {
-        Optional<Profile> profile = profileService.getProfileByUserId(userId);
+    public String getPhoto(@AuthenticationPrincipal Jwt jwt) throws FileNotFoundException, IOException {
         
-        if(profile.isPresent()) {
+       Profile profile = profileService.getProfileByToken(jwt);
+       System.out.println("Profile " + profile);
+        
+        if(profile != null) {
             System.out.println("Profile is present");
-            System.out.println("Profile first name: " + profile.get().getFirstName());
-            System.out.println("Profile last name: " + profile.get().getLastName());
+            System.out.println("Profile first name: " + profile.getFirstName());
+            System.out.println("Profile last name: " + profile.getLastName());
 
-            Photo profilePhoto = profile.get().getProfilePhoto();
+            Photo profilePhoto = profile.getProfilePhoto();
             System.out.println("Profile Photo" + profilePhoto);
             if(profilePhoto != null) {
                 URL signedUrl = profilePhoto.getSignedUrl();
