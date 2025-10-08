@@ -12,26 +12,29 @@ class UserService{
         this.repository = repository;
     }
     
-    public User createUser(String firstName, String lastName, String email, String userName) {
-        User user = new User(firstName, lastName, email, userName);
+    public User createUser(String authId) {
+        User user = new User(authId);
         repository.save(user);
         return user;
     }
     
-    public Optional<User> getUserByUserName(String userName) {
-        return repository.findByUserName(userName);
-    }
-    
-    public Optional<User> getUserByUserId(String userId) {
-        return repository.findById(userId);
-    }
-    
-    public User getOrCreateUser(String userId) {
+    public User getUserById(String userId) {
         Optional<User> user = repository.findById(userId);
         User userAccount;
         if(user.isEmpty()) {
-            userAccount = createUser("", "", "", "");
-
+            return null;
+        }
+        else {
+            userAccount = user.get(); 
+        }
+        return userAccount;
+    }
+    
+    public User getUserByAuthId(String authId) {
+        Optional<User> user = repository.findByAuthId(authId);
+        User userAccount;
+        if(user.isEmpty()) {
+            return null;
         }
         else {
             userAccount = user.get(); 

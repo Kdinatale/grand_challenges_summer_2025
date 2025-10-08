@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+
 import EditIcon from "./assets/images/edit_icon.png";
 import ProfilePage from "./ProfilePage";
 import "./styles/ProfileViewManager.css";
@@ -34,9 +35,9 @@ function ProfileViewManager({ userId }) {
     setIsEditMode(!isEditMode);
   };
 
-  useEffect(() => {
-    console.log(isImageUrl);
-  }, [isImageUrl]);
+  // useEffect(() => {
+  //   console.log(isImageUrl);
+  // }, [isImageUrl]);
 
   useEffect(() => {
     async function getProfilePhoto() {
@@ -56,7 +57,7 @@ function ProfileViewManager({ userId }) {
           profilePhoto={
             <UploadProfileImage
               ref={profileImageRef}
-              profileImage={isImageUrl}
+              profileImage={<GetFile />}
             />
           }
           profileImageRef={profileImageRef}
