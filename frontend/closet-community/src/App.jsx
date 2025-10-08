@@ -9,10 +9,10 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/closet/:userId" element={<ClosetFeedView />}></Route>
+        {/* <Route path="/closet/:userId" element={<ClosetFeedView />}></Route>
         <Route
           path="/profile/"
-        <Route path="/closet" element={<ClosetFeedView />}></Route>
+        <Route path="/closet" element={<ClosetFeedView />}></Route> */}
         {/* <Route
           path="/profile"
           element={<ProfileViewManager userId="689151d2f2aaa40b4e1b2b2e" />}

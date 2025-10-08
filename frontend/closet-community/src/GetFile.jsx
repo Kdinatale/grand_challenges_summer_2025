@@ -37,6 +37,7 @@ function GetFile() {
   }, [getToken]);
 
   return <img src={fileUrl} />;
+  
 async function GetFile(url) {
   const response = await axios.get(url);
   return response;
