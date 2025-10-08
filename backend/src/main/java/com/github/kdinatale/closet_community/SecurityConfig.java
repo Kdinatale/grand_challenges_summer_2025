@@ -17,6 +17,8 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/getProfilePhoto/").authenticated()
+                        .requestMatchers("/clothingFeed").authenticated()
+
 //                    .requestMatchers("/api/public").permitAll()
 //                    .requestMatchers("/api/private").authenticated()
 //                    .requestMatchers("/api/private-scoped").hasAuthority("SCOPE_read:messages")

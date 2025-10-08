@@ -24,9 +24,6 @@ class ProfileService{
     public Profile getProfileByToken(Jwt jwt) {
         System.out.println("GET PROFILE TOKEN");
         System.out.println("JWT " + jwt);
-//        
-//        System.out.println("JWT Claims:");
-//        jwt.getClaims().forEach((key, value) -> System.out.println(key + " : " + value));
         
         String authId = jwt.getClaimAsString("sub");
         

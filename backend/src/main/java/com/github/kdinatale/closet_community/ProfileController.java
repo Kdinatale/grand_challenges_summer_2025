@@ -3,14 +3,12 @@ package com.github.kdinatale.closet_community;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Optional;
 
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +29,7 @@ public class ProfileController {
         this.photoService = photoService;
     }
     @CrossOrigin(origins = "http://localhost:5173")
-    @PostMapping("/uploadProfilePhoto/{userId}")
+    @PostMapping("/uploadProfilePhoto/")
     @ResponseBody
     public void uploadProfilePhoto(@AuthenticationPrincipal Jwt jwt,
 @RequestParam("file") MultipartFile file) throws IOException {
@@ -87,7 +85,9 @@ public class ProfileController {
     @GetMapping("/getProfilePhoto/")
     @ResponseBody
     public String getPhoto(@AuthenticationPrincipal Jwt jwt) throws FileNotFoundException, IOException {
+        
        Profile profile = profileService.getProfileByToken(jwt);
+       System.out.println("Profile " + profile);
         
         if(profile != null) {
             System.out.println("Profile is present");

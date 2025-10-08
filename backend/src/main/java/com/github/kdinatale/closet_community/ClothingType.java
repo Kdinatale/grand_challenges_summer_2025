@@ -6,5 +6,6 @@ public enum ClothingType{
     PANTS,
     SHOES,
     JACKETS,
+    DRESS,
     
 }
