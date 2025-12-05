@@ -1,12 +1,15 @@
 package com.github.kdinatale.closet_community;
 
 import java.io.FileNotFoundException;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -22,18 +25,22 @@ import org.springframework.web.multipart.MultipartFile;
 public class ClothingController {
     public final ClothingItemService clothingItemService;
     final UploadService uploadService;
+    final ProfileService profileService;
 
-    public ClothingController(ClothingItemService clothingItemService, UploadService uploadService) {
+    public ClothingController(ClothingItemService clothingItemService, UploadService uploadService, ProfileService profileService) {
         this.clothingItemService = clothingItemService;
         this.uploadService = uploadService;
+        this.profileService = profileService;
 
     }
     
     @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/getClothingItemsOrderedByTime/{userId}")
+    @GetMapping("/getClothingItemsOrderedByTime/")
     @ResponseBody
-    public List<Map<String, Object>> getClothingItemsOrderedByTime(@PathVariable String userId) throws FileNotFoundException, IOException {
-        List<ClothingItem> clothingItems = clothingItemService.getItemsByTimeCreated(userId);
+    public List<Map<String, Object>> getClothingItemsOrderedByTime(@AuthenticationPrincipal Jwt jwt) throws FileNotFoundException, IOException {
+        Profile profile = profileService.getProfileByToken(jwt);        
+        
+        List<ClothingItem> clothingItems = clothingItemService.getItemsByUser(profile.getUserId());
         List<Map<String, Object>> itemUrls = new ArrayList<>();
         for(int i = 0; i < clothingItems.size(); i++) {
             ClothingItem item = clothingItems.get(i);
@@ -49,13 +56,17 @@ public class ClothingController {
     @GetMapping("/getClothingItem/{clothingItemId}")
     @ResponseBody
     public ClothingItem getClothingItemMetaData(@PathVariable String clothingItemId) {
-        return clothingItemService.getItemById(clothingItemId).get();
+        return clothingItemService.getItemById(clothingItemId);
     }
     
     @CrossOrigin(origins = "http://localhost:5173")
-    @PostMapping("/postClothingItem/{userId}")
+    @PostMapping("/postClothingItem/")
     @ResponseBody
-    public void postClothingItem(@PathVariable String userId, @RequestParam("image") MultipartFile image, @RequestParam("caption") String caption) throws IOException {
+    public void postClothingItem(@AuthenticationPrincipal Jwt jwt, @RequestParam("image") MultipartFile image, @RequestParam("caption") String caption) throws IOException {
+        Profile profile = profileService.getProfileByToken(jwt);
+        String userId = profile.getUserId();
+
+        
         String clothingFolderName = "clothing-images";
 
         String fileExtension;

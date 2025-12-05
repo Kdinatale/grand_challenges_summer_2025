@@ -16,8 +16,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests((authorize) -> authorize
-                        .requestMatchers("/getProfilePhoto/").authenticated()
-                        .requestMatchers("/clothingFeed").authenticated()
+//                        .requestMatchers("/getProfilePhoto/").authenticated()
+//                        .requestMatchers("/clothingFeed").authenticated()
+                        .anyRequest().authenticated()
 
 //                    .requestMatchers("/api/public").permitAll()
 //                    .requestMatchers("/api/private").authenticated()

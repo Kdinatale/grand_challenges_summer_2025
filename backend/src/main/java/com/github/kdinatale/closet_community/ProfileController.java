@@ -98,8 +98,8 @@ public class ProfileController {
             System.out.println("Profile Photo" + profilePhoto);
             if(profilePhoto != null) {
                 URL signedUrl = profilePhoto.getSignedUrl();
-                profile.get().setProfilePhoto(profilePhoto);
-                profileService.saveProfile(profile.get());
+                profile.setProfilePhoto(profilePhoto);
+                profileService.saveProfile(profile);
                 System.out.println("SIGNED URL" + signedUrl);
                 System.out.println(signedUrl.toString());
                 return signedUrl.toString();

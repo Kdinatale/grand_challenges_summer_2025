@@ -18,12 +18,12 @@ public class UserController {
         this.userService = userService;
     }
     
-    @CrossOrigin(origins = "http://localhost:5173")
-    @GetMapping("/getUserName/{userId}")
-    @ResponseBody
-    public String getUserName(@PathVariable String userId) {
-        Optional<User> user = userService.getUserByUserId(userId);
-        return user.get().getUserName();
-        
-    }
+//    @CrossOrigin(origins = "http://localhost:5173")
+//    @GetMapping("/getUserName/{userId}")
+//    @ResponseBody
+//    public String getUserName(@PathVariable String userId) {
+//        Optional<User> user = userService.getUserByUserId(userId);
+//        return user.get().getUserName();
+//        
+//    }
 }
