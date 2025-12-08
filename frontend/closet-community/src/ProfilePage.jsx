@@ -14,7 +14,6 @@ function ProfilePage({
   clothingItemThree,
   clothingItemFour,
   iconImage,
-  userId,
 }) {
   const [isClosetHovered, setIsClosetHovered] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
@@ -35,7 +34,7 @@ function ProfilePage({
   };
 
   const handleClickOkayButton = () => {
-    navigate(`/closet/${userId}`, { viewTransition: true });
+    navigate(`/closet/`, { viewTransition: true });
   };
 
   const handleClickLaterButton = () => {
