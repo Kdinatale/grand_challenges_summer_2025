@@ -1,6 +1,6 @@
 import Browser from "./Browser";
 import FeedHeader from "./FeedHeader";
-import GetFile from "./GetFile";
+import { getFile } from "./GetFile";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -15,7 +15,7 @@ function ClosetFeedView() {
 
   const handleClickAddClothingItem = () => {
     console.log("CLICK");
-    navigate(`/addClothingItem/${userId}`, { viewTransition: true });
+    navigate(`/addClothingItem/`, { viewTransition: true });
   };
 
   const handleIndividualClothingView = (clothingItem) => {
@@ -30,23 +30,20 @@ function ClosetFeedView() {
   };
 
   useEffect(() => {
-    async function getClothingItems() {
-      const response = await GetFile(
-        `http://localhost:8080/getClothingItemsOrderedByTime/${userId}`
+    async function load() {
+      const profileData = await getFile(
+        `http://localhost:8080/getProfilePhoto/`
       );
-      setIsClothingItems([SaveIcon].concat(response.data));
-      console.log(response.data);
-    }
+      console.log("Profile Photo Data: ", profileData);
+      setIsProfileImageUrl(profileData);
 
-    async function getProfilePhoto() {
-      const response = await GetFile(
-        `http://localhost:8080/getProfilePhoto/${userId}`
+      const clothingData = await getFile(
+        `http://localhost:8080/getClothingItemsOrderedByTime/`
       );
-      setIsProfileImageUrl(response.data);
-      console.log(response.data);
+      console.log("Clothing Data: ", clothingData);
+      setIsClothingItems(clothingData);
     }
-    getProfilePhoto();
-    getClothingItems();
+    load();
   }, []);
 
   return (
