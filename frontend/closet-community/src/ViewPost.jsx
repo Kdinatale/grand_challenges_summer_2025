@@ -1,10 +1,11 @@
-import { useLocation } from "react-router-dom";
 import Browser from "./Browser";
 import "./styles/ViewPost.css";
 import PostHeader from "./PostHeader";
 import { useEffect } from "react";
-import GetFile from "./GetFile";
+import { getFile } from "./GetFile";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import formatPostTime from "./TimeFormat";
 import "nes.css/css/nes.min.css";
 import HeartIcon from "./assets/images/heart_icon.png";
@@ -12,7 +13,6 @@ import HeartIcon from "./assets/images/heart_icon.png";
 function ViewPost() {
   const [postCreatedAt, setPostCreatedAt] = useState(null);
   const [postCaption, setPostCaption] = useState("");
-  const [userName, setUserName] = useState("");
   const location = useLocation();
   const { userId, itemUrl, clothingItemId, profileImageUrl } = location.state;
   console.log(itemUrl);
@@ -21,22 +21,19 @@ function ViewPost() {
   useEffect(() => {
     async function getClothingInfo() {
       const getClothingInfoUrl = `http://localhost:8080/getClothingItem/${clothingItemId}`;
-      const clothingResponse = await GetFile(getClothingInfoUrl);
-      console.log("RESPONSE: ", clothingResponse.data);
-      const formattedDate = formatPostTime(clothingResponse.data.time);
+      const clothingResponse = await getFile(getClothingInfoUrl);
+      console.log("RESPONSE: ", clothingResponse);
+      const formattedDate = formatPostTime(clothingResponse.time);
+      console.log("formatted date: ", formattedDate);
       setPostCreatedAt(formattedDate);
 
-      console.log(clothingResponse.data.caption);
-      setPostCaption(clothingResponse.data.caption);
-
-      const getUserInfoUrl = `http://localhost:8080/getUserName/${userId}`;
-
-      const userNameResponse = await GetFile(getUserInfoUrl);
-      console.log(userNameResponse.data);
-      setUserName(userNameResponse.data);
+      console.log(clothingResponse.caption);
+      setPostCaption(clothingResponse.caption);
     }
+
     getClothingInfo();
   }, []);
+
   return (
     <>
       <Browser
@@ -44,10 +41,7 @@ function ViewPost() {
           <>
             <div className="individual-post-page-container">
               <div className="post-border">
-                <PostHeader
-                  profileImageUrl={profileImageUrl}
-                  username={userName}
-                />
+                <PostHeader profileImageUrl={profileImageUrl} username="test" />
                 <div className="clothing-image-container">
                   <div className="post-box">
                     <img className="clothingItemImage" src={itemUrl}></img>
@@ -63,7 +57,7 @@ function ViewPost() {
                   <div className="comment-container">
                     <div className="caption-username-container">
                       <div className="username-container">
-                        <p className="username">{userName}</p>
+                        <p className="username">"test"</p>
                       </div>
                       <div className="caption-container">
                         <p className="caption">{postCaption}</p>
