@@ -7,7 +7,7 @@ function Home() {
   const { loginWithRedirect } = useAuth0();
 
   useEffect(() => {
-    loginWithRedirect({ redirectUri: "http://localhost:5173/test" });
+    loginWithRedirect({ redirectUri: "http://localhost:5173/profile" });
   }, []);
 
   return <></>;
