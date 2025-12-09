@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import "./styles/ProfilePage.css";
 import pinkPin from "./assets/images/pink_pin.png";
 import Test from "./Test";
+import LogoutButton from "./LogoutButton.jsx";
 function ProfilePage({
   profilePhoto,
   clothingItemOne,
@@ -46,6 +47,9 @@ function ProfilePage({
       <Browser
         children={
           <div className="profile-closet-container">
+            <div className="logout-button-container">
+              <LogoutButton></LogoutButton>
+            </div>
             <div className="profile-content-container">
               <div className="about-me-container">
                 <div className="about-me-border">
