@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import "./Browser.css";
 
-function Browser({ children, rightUrl }) {
+function Browser({ children }) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(rightUrl, { viewTransition: true });
+    navigate(-1, { viewTransition: true });
   };
   return (
     <>
