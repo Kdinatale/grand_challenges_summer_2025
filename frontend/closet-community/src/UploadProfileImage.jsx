@@ -1,21 +1,17 @@
-import React, { forwardRef } from "react";
-
-const UploadProfileImage = forwardRef(({ profileImage }, ref) => {
+const UploadProfileImage = ({ profileImage, onFileSelected }) => {
   return (
     <>
-      <form>
-        <label htmlFor="profile-image-input">
-          <img className="profile-photo-img" src={profileImage}></img>
-        </label>
-        <input
-          ref={ref}
-          id="profile-image-input"
-          style={{ display: "none" }}
-          type="file"
-        ></input>
-      </form>
+      <label htmlFor="profile-image-input">
+        <img className="profile-photo-img" src={profileImage}></img>
+      </label>
+      <input
+        id="profile-image-input"
+        style={{ display: "none" }}
+        type="file"
+        onChange={(e) => onFileSelected(e.target.files[0])}
+      ></input>
     </>
   );
-});
+};
 
 export default UploadProfileImage;
