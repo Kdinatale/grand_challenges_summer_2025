@@ -4,7 +4,6 @@ import ProfileViewManager from "./ProfileViewManager";
 import CreatePost from "./CreatePost";
 import ViewPost from "./viewPost";
 import Home from "./Home";
-import Test from "./Test";
 import { useAccessToken } from "./useAccessToken";
 import { useEffect } from "react";
 

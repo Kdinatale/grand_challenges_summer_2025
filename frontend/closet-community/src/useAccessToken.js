@@ -10,6 +10,8 @@ export function useAccessToken() {
         audience: "https://api.closetcommunity.com",
         scope: "openid profile email",
       });
+      const payload = JSON.parse(atob(token.split(".")[1]));
+      console.log("Audience:", payload.aud);
     } catch (error) {
       console.error("Error getting token ", error);
       return null;

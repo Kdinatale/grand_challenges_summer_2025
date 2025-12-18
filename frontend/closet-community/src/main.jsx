@@ -10,7 +10,7 @@ createRoot(document.getElementById("root")).render(
     domain="dev-78lphauxjlpgvp73.us.auth0.com"
     clientId="QH9lvUPJoEtD2xbvi9qewJfgzYjU8dmr"
     authorizationParams={{
-      redirect_uri: window.location.origin,
+      redirect_uri: `${window.location.origin}/profile`,
       audience: "https://api.closetcommunity.com",
       scope: "open profile email",
     }}
