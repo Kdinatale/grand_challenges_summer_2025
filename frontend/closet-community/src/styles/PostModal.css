@@ -1,0 +1,226 @@
+.post-container {
+  background-color: white;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container-border {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  background-color: #6e6767;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container {
+  background-color: #ada8a8;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-container-form {
+  background-color: #ada8a8;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upper-modal-container {
+  background-color: #ada8a8;
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.image-container-border {
+  background-color: #847b7b;
+  width: 80%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.image-container {
+  background-color: white;
+  width: 90%;
+  height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.photo-icon {
+  background-color: white;
+  width: 70%;
+  aspect-ratio: 1.3/1;
+}
+
+.lower-modal-container {
+  background-color: #ada8a8;
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.caption-text-box-container {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.caption-text-box {
+  width: 90%;
+  height: 80%;
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: left;
+  font-size: 2.2cqw;
+  color: #625a5a;
+  padding: 2%;
+}
+.button-section-container {
+  height: 30%;
+  width: 100%;
+  background-color: #ada8a8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-container {
+  width: 40%;
+  height: 85%;
+  background-color: #ada8a8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10%;
+}
+.cancel-button {
+  height: 100%;
+  aspect-ratio: 1.9/1;
+  display: flex;
+  background-color: #e3f3f9;
+  font-family: "Irish Grover", system-ui;
+  /* font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 3cqw; */
+}
+
+.post-button {
+  height: 100%;
+  aspect-ratio: 1.9/1;
+  display: flex;
+  background-color: #eac2e6;
+  /* font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 3cqw; */
+}
+.caption-label-container {
+  height: 20%;
+  width: 90%;
+  display: flex;
+}
+.caption-label {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 2.25cqw;
+  color: black;
+  margin-left: 0;
+}
+
+.select-photo-image {
+  height: 100%;
+  width: 70%;
+  margin-right: 0;
+}
+.image-button-container {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: left;
+  flex-direction: column;
+  position: relative;
+  background-color: #ada8a8;
+}
+
+.image-section {
+  display: flex;
+  height: 90%;
+  /* width: 90%; */
+  aspect-ratio: 1;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+}
+
+.select-photo-button-container {
+  display: flex;
+  width: 100%;
+  height: 25%;
+  justify-content: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.img-upload {
+  display: none;
+}
+
+.image-upload-label {
+  display: flex;
+  justify-content: right;
+}
+
+.post-button-img {
+  height: 100%;
+  width: 100%;
+}
+
+.cancel-button-img {
+  height: 100%;
+  width: 100%;
+}
+
+.button-container p {
+  width: 100%;
+  height: 100%;
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin: auto;
+  text-align: center;
+  font-size: 3cqw;
+}

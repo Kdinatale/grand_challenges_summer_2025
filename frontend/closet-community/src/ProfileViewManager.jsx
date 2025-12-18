@@ -5,42 +5,57 @@ import ProfilePage from "./ProfilePage";
 import "./styles/ProfileViewManager.css";
 import SaveButton from "./assets/images/save_button.png";
 import UploadProfileImage from "./UploadProfileImage";
-import { useRef } from "react";
+import { useEffect } from "react";
+import TemporaryProfileImage from "./assets/images/blank_profile_image.png";
 import UploadFile from "./UploadFile";
-import GetFile from "./GetFile";
+import { getFile } from "./GetFile";
 
 function ProfileViewManager() {
   const [isEditMode, setIsEditMode] = useState(false);
-  // const [isImageUrl, setIsImageUrl] = useState("");
+  const [isImageUrl, setIsImageUrl] = useState(TemporaryProfileImage);
+  const [profileImageFile, setProfileImageFile] = useState(
+    TemporaryProfileImage
+  );
 
-  const profileImageRef = useRef(null);
-
-  const handleEditClick = async () => {
-    if (profileImageRef.current && profileImageRef.current.files.length > 0) {
-      const profileImageFile = profileImageRef.current.files[0];
-      console.log(profileImageFile);
-      try {
-        const response = await UploadFile(profileImageFile);
-        console.log("RESPONSE: " + response);
-      } catch (e) {
-        console.log(e);
-      }
+  useEffect(() => {
+    async function load() {
+      const data = await getFile("http://localhost:8080/getProfilePhoto/");
+      setIsImageUrl(data);
     }
+    load();
+  }, []);
 
-    setIsEditMode(!isEditMode);
+  useEffect(() => {
+    console.log("PROFILE PHOTO URLS: ", isImageUrl);
+
+    if (isImageUrl && isImageUrl.length > 0) {
+      setIsImageUrl(isImageUrl);
+    }
+  }, [isImageUrl]);
+
+  const enterEditMode = () => {
+    setIsEditMode(true);
   };
 
-  // useEffect(() => {
-  //   console.log(isImageUrl);
-  // }, [isImageUrl]);
+  const handleFileSelected = (file) => {
+    setProfileImageFile(file);
+    setIsImageUrl(URL.createObjectURL(file));
+  };
 
-  // useEffect(() => {
-  //   async function getProfilePhoto() {
-  //     const response = GetFile();
-  //     setIsImageUrl(response.data);
-  //   }
-  //   getProfilePhoto();
-  // }, []);
+  const handleFileSave = async () => {
+    try {
+      const formData = new FormData();
+      formData.append("file", profileImageFile);
+      const response = await UploadFile(
+        formData,
+        `http://localhost:8080/uploadProfilePhoto/`
+      );
+      console.log("RESPONSE: " + response);
+      setIsEditMode(!isEditMode);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <>
@@ -48,14 +63,13 @@ function ProfileViewManager() {
         <ProfilePage
           profilePhoto={
             <UploadProfileImage
-              ref={profileImageRef}
-              profileImage={<GetFile />}
+              profileImage={<img src={isImageUrl}></img>}
+              onFileSelected={handleFileSelected}
             />
           }
-          profileImageRef={profileImageRef}
           iconImage={
             <img
-              onClick={handleEditClick}
+              onClick={handleFileSave}
               className="save-icon"
               src={SaveButton}
             ></img>
@@ -63,11 +77,11 @@ function ProfileViewManager() {
         />
       ) : (
         <ProfilePage
-          profilePhoto={<GetFile />}
+          profilePhoto={<img src={isImageUrl} />}
           clothingItemOne={<></>}
           iconImage={
             <img
-              onClick={handleEditClick}
+              onClick={enterEditMode}
               className="edit-icon"
               src={EditIcon}
             ></img>

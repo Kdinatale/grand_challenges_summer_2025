@@ -1,0 +1,60 @@
+.post-header-container {
+  width: 100%;
+  height: 15%;
+  background-color: #d9d9d9;
+}
+
+.post-header-container .header-content .profile-image-border {
+  width: 50%;
+  aspect-ratio: 1.05 / 1;
+  border-radius: 50%;
+  background-color: #eb9cdf;
+  margin: auto;
+  display: flex;
+}
+
+.post-header-container .header-content .profile-photo-img {
+  width: 80%;
+  aspect-ratio: 1.05 / 1;
+  border-radius: 60%;
+  margin: auto;
+  border: solid 2px #d14ebe;
+}
+.post-header-container .profile-image-container {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-header-container .header-content {
+  width: 60%;
+  height: 100%;
+  display: flex;
+}
+
+.post-header-container .user-information-container {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-header-container .username-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+.post-header-container .username-text {
+  font-family: "Irish Grover", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  margin-left: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  text-align: left;
+  font-size: 2cqw;
+  color: black;
+}

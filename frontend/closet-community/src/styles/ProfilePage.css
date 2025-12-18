@@ -1,7 +1,8 @@
 .profile-closet-container {
   display: flex;
   height: 100%;
-  width: 100%;
+  width: 95%;
+  position: relative;
 }
 .profile-content-container {
   flex: 2;
@@ -12,8 +13,9 @@
 }
 .about-me-container {
   flex: 3;
-  width: 80%;
+  width: 100%;
   display: flex;
+  align-self: center;
 }
 
 .about-me-border {
@@ -177,6 +179,7 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  align-self: center;
 }
 .closed-closet-container {
   height: 80%;
@@ -373,4 +376,9 @@
   width: 100%;
   height: 27%;
   justify-content: center;
+}
+.logout-button-container {
+  display: flex;
+  height: 0%;
+  position: absolute;
 }

@@ -2,6 +2,7 @@ package com.github.kdinatale.closet_community;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -28,15 +29,24 @@ public class ClothingItemService{
     public List<ClothingItem> getItemsByUser(String userId){
         return repository.findByUserIdOrderByCreatedAtAsc(userId);
     }
+    
+    public ClothingItem getItemById(String clothingItemId) {
+        return repository.findById(clothingItemId).get(); 
+    }
 //    
 //    public List<ClothingItem> getItemsByTimeCreated(){
 //        return repository.findAllByOrderByCreatedAtAsc();
 //    }
 //    
-//    public void addClothingItem(ClothingItem item) {
-//        repository.save(item);
-//    }
-//    public void deleteClothingItem(ClothingItem item) {
-//        repository.delete(item);
-//    }
+    public void addClothingItem(ClothingItem item) {
+        repository.save(item);
+    }
+    public void deleteClothingItem(ClothingItem item) {
+        repository.delete(item);
+    }
+
+    public void saveClothingItem(ClothingItem item) {
+        repository.save(item);
+        
+    }
 }

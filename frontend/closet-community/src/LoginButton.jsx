@@ -7,7 +7,7 @@ const LoginButton = () => {
   return (
     <button
       onClick={() =>
-        loginWithRedirect({ redirectUri: "http://localhost:5173/test" })
+        loginWithRedirect({ redirectUri: "http://localhost:5173/profile" })
       }
     >
       Log In
